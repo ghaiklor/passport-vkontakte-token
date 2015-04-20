@@ -1,6 +1,6 @@
 {
   "name": "passport-vkontakte-token",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Passport strategy for authenticating with VKontakte via OAuth2 access tokens",
   "main": "index.js",
   "scripts": {
