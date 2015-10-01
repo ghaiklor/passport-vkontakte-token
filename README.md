@@ -1,6 +1,13 @@
 # passport-vkontakte-token
 
-![Build Status](https://img.shields.io/travis/ghaiklor/passport-vkontakte-token.svg) ![Coverage](https://img.shields.io/coveralls/ghaiklor/passport-vkontakte-token.svg) ![Downloads](https://img.shields.io/npm/dm/passport-vkontakte-token.svg) ![npm version](https://img.shields.io/npm/v/passport-vkontakte-token.svg) ![dependencies](https://img.shields.io/david/ghaiklor/passport-vkontakte-token.svg) ![dev dependencies](https://img.shields.io/david/dev/ghaiklor/passport-vkontakte-token.svg) ![License](https://img.shields.io/npm/l/passport-vkontakte-token.svg)
+![Build Status](https://img.shields.io/travis/ghaiklor/passport-vkontakte-token.svg)
+![Coverage](https://img.shields.io/coveralls/ghaiklor/passport-vkontakte-token.svg)
+![Downloads](https://img.shields.io/npm/dm/passport-vkontakte-token.svg)
+![Downloads](https://img.shields.io/npm/dt/passport-vkontakte-token.svg)
+![npm version](https://img.shields.io/npm/v/passport-vkontakte-token.svg)
+![dependencies](https://img.shields.io/david/ghaiklor/passport-vkontakte-token.svg)
+![dev dependencies](https://img.shields.io/david/dev/ghaiklor/passport-vkontakte-token.svg)
+![License](https://img.shields.io/npm/l/passport-vkontakte-token.svg)
 
 [Passport](http://passportjs.org/) strategy for authenticating with VKontakte access tokens using the OAuth 2.0 API.
 
@@ -57,7 +64,11 @@ module.exports = {
 };
 ```
 
-The POST request to this route should include a JSON object with the keys `access_token` and optionally, `refresh_token` set to the credentials you receive from VKontakte.
+The request to this route should include a GET or POST data with the keys `access_token` and optionally, `refresh_token` set to the credentials you receive from VKontakte.
+
+```
+GET /auth/vkontakte?access_token=<TOKEN>
+```
 
 ## Issues
 
