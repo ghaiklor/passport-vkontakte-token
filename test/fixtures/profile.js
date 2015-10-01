@@ -1,4 +1,4 @@
-{
+export default JSON.stringify({
   "response": [
     {
       "id": 139396436,
@@ -9,4 +9,4 @@
       "photo_123": "my_photo"
     }
   ]
-}
+})
