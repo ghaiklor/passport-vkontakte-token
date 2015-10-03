@@ -12,21 +12,17 @@ import { OAuth2Strategy, InternalOAuthError } from 'passport-oauth';
  * - clientSecret      Secret used to establish ownership of the consumer key
  * - passReqToCallback If need, pass req to verify callback
  *
- * Example:
- *     passport.use(new VKontakteTokenStrategy({
- *           clientID: '123-456-789',
- *           clientSecret: 'shhh-its-a-secret',
- *           passReqToCallback: true
- *       }, function(req, accessToken, refreshToken, profile, next) {
- *              User.findOrCreate(..., function (error, user) {
- *                  next(error, user);
- *              });
- *          }
- *       ));
- *
  * @param {Object} _options
  * @param {Function} _verify
- * @constructor
+ * @example
+ * passport.use(new VKontakteTokenStrategy({
+ *   clientID: '123456789',
+ *   clientSecret: 'shhh-its-a-secret'
+ * }), function(accessToken, refreshToken, profile, next) {
+ *   User.findOrCreate({vkontakteId: profile.id}, function(error, user) {
+ *     next(error, user);
+ *   })
+ * })
  */
 export default class VKontakteTokenStrategy extends OAuth2Strategy {
   constructor(_options, _verify) {
@@ -41,6 +37,7 @@ export default class VKontakteTokenStrategy extends OAuth2Strategy {
     this.name = 'vkontakte-token';
     this._accessTokenField = options.accessTokenField || 'access_token';
     this._refreshTokenField = options.refreshTokenField || 'refresh_token';
+    this._profileFields = options.profileFields || ['uid', 'first_name', 'last_name', 'screen_name', 'sex', 'photo'];
     this._profileURL = options.profileURL || 'https://api.vk.com/method/users.get';
     this._apiVersion = options.apiVersion || '5.0';
     this._passReqToCallback = options.passReqToCallback;
@@ -82,8 +79,7 @@ export default class VKontakteTokenStrategy extends OAuth2Strategy {
    * @param {Function} done
    */
   userProfile(accessToken, done) {
-    let fields = ['uid', 'first_name', 'last_name', 'screen_name', 'sex', 'photo'];
-    let url = this._profileURL + '?fields=' + fields.join(',') + '&v=' + this._apiVersion;
+    let url = this._profileURL + '?fields=' + this._profileFields.join(',') + '&v=' + this._apiVersion;
 
     this._oauth2.get(url, accessToken, (error, body, res) => {
       if (error) return done(new InternalOAuthError('Failed to fetch user profile', error));

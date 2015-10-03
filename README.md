@@ -28,6 +28,8 @@ The VKontakte authentication strategy authenticates users using a VKontakte acco
 The strategy requires a `verify` callback, which accepts these credentials and calls `next` providing a user, as well as `options` specifying a app ID and app secret.
 
 ```javascript
+var VKontakteTokenStrategy = require('passport-vkontakte-token');
+
 passport.use(new VKontakteTokenStrategy({
     clientID: VKONTAKTE_CLIENT_ID,
     clientSecret: VKONTAKTE_CLIENT_SECRET,
